@@ -1,0 +1,39 @@
+address: :1053
+
+log:
+  level: info
+
+#metrics:
+#  namespace: roundns
+#  address: :8553
+
+services:
+  - fqdn: a.test.local.
+    type: A
+    ttl: 300
+    health:
+      command: curl -fs http://$HOST
+      interval: 1m
+    hosts:
+      - 127.0.0.1
+      - 127.0.0.2
+
+  - fqdn: b.test.local.
+    type: A
+    ttl: 5m
+    health:
+      command:
+        - bash
+        - -c
+        - "echo $HOST"
+      interval: 1h
+    hosts:
+      - 127.0.1.1
+      - 127.0.1.2
+
+  - fqdn: c.test.local.
+    type: A
+    health: echo $HOST
+    hosts:
+      - 127.0.1.1
+      - 127.0.1.2

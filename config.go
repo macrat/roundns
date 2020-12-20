@@ -5,10 +5,10 @@ import (
 	"net"
 	"time"
 
-	"github.com/go-yaml/yaml"
 	"github.com/macrat/landns/lib-landns"
 	"github.com/macrat/landns/lib-landns/logger"
 	"github.com/miekg/dns"
+	"gopkg.in/yaml.v2"
 )
 
 type QType uint16

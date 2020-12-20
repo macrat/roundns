@@ -8,9 +8,9 @@ import (
 	"net"
 	"os"
 
-	"github.com/go-yaml/yaml"
 	"github.com/macrat/landns/lib-landns"
 	"github.com/macrat/landns/lib-landns/logger"
+	"gopkg.in/yaml.v2"
 )
 
 var (

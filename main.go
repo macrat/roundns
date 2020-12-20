@@ -54,7 +54,7 @@ func main() {
 
 	ctx := context.Background()
 
-	rs := conf.MakeResolver(log, metrics)
+	rs := conf.MakeResolver(log)
 	rs.RunHealthCheck(ctx)
 
 	server := landns.Server{

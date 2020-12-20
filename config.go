@@ -134,7 +134,7 @@ func (s ServiceConfig) host2record(host string) landns.Record {
 	}
 }
 
-func (s ServiceConfig) MakeResolver(log logger.Logger, metrics *landns.Metrics) ResolverWithHealthCheck {
+func (s ServiceConfig) MakeResolver(log logger.Logger) ResolverWithHealthCheck {
 	var hosts []Host
 	for _, h := range s.Hosts {
 		monitor := &HealthMonitor{
@@ -154,7 +154,6 @@ func (s ServiceConfig) MakeResolver(log logger.Logger, metrics *landns.Metrics) 
 		Domain:   s.FQDN.String(),
 		Hosts:    hosts,
 		Strategy: s.Strategy.MakeStrategy(),
-		Metrics:  metrics,
 	}
 }
 
@@ -198,7 +197,7 @@ type Config struct {
 	Services []ServiceConfig `yaml:"services"`
 }
 
-func (c Config) MakeResolver(log logger.Logger, metrics *landns.Metrics) ResolverWithHealthCheck {
+func (c Config) MakeResolver(log logger.Logger) ResolverWithHealthCheck {
 	var rs ResolverWithHealthCheckSet
 
 	ttl := c.TTL
@@ -211,7 +210,7 @@ func (c Config) MakeResolver(log logger.Logger, metrics *landns.Metrics) Resolve
 			s.TTL = ttl
 		}
 
-		rs = append(rs, s.MakeResolver(log, metrics))
+		rs = append(rs, s.MakeResolver(log))
 	}
 
 	return rs

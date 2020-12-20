@@ -54,7 +54,6 @@ type LoadBalanceResolver struct {
 	Domain   string
 	Hosts    []Host
 	Strategy Strategy
-	Metrics  *landns.Metrics
 }
 
 func (lb LoadBalanceResolver) RunHealthCheck(ctx context.Context) {

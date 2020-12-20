@@ -1,8 +1,8 @@
 package main
 
 import (
-	"testing"
 	"net"
+	"testing"
 
 	"github.com/macrat/landns/lib-landns"
 	"github.com/macrat/landns/lib-landns/testutil"
@@ -11,7 +11,7 @@ import (
 
 func TestLoadBalanceResolver(t *testing.T) {
 	rs := LoadBalanceResolver{
-		Qtype: dns.TypeA,
+		Qtype:  dns.TypeA,
 		Domain: "test.local.",
 		Hosts: []Host{
 			{Record: landns.AddressRecord{Name: "test.local.", Address: net.ParseIP("127.0.1.2"), TTL: 300}},
@@ -20,7 +20,7 @@ func TestLoadBalanceResolver(t *testing.T) {
 		Strategy: &RoundRobinStrategy{},
 	}
 
-	tests := []struct{
+	tests := []struct {
 		res string
 		req landns.Request
 	}{
@@ -57,7 +57,7 @@ func TestLoadBalanceResolver(t *testing.T) {
 
 func TestLoadBalanceResolver_allDown(t *testing.T) {
 	rs := LoadBalanceResolver{
-		Qtype: dns.TypeA,
+		Qtype:  dns.TypeA,
 		Domain: "test.local.",
 		Hosts: []Host{
 			{Record: landns.AddressRecord{Name: "test.local.", Address: net.ParseIP("127.0.1.2"), TTL: 300}, Health: &HealthMonitor{}},

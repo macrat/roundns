@@ -68,7 +68,7 @@ func (lb LoadBalanceResolver) RunHealthCheck(ctx context.Context) {
 func (lb LoadBalanceResolver) getStatus() (alives []bool, selectable bool) {
 	alives = make([]bool, len(lb.Hosts))
 	for i, h := range lb.Hosts {
-		alives[i] = h.Health.IsHealthy()
+		alives[i] = h.Health == nil || h.Health.IsHealthy()
 		if alives[i] {
 			selectable = true
 		}

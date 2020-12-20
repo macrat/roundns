@@ -100,7 +100,7 @@ func (s *StrategyConfig) UnmarshalText(text []byte) error {
 	}
 
 	if *s != "lound-robin" {
-		return fmt.Errorf("unsupported strategy: %s", s)
+		return fmt.Errorf("unsupported strategy: %v", string(*s))
 	}
 
 	return nil

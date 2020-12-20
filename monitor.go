@@ -53,7 +53,7 @@ func (h *HealthMonitor) fields(cmd *exec.Cmd) logger.Fields {
 
 	return logger.Fields{
 		"command": cmd.Path,
-		"args":    strings.Join(cmd.Args, " "),
+		"args":    shellescape.QuoteCommand(cmd.Args),
 		"env":     strings.Join(env, " "),
 	}
 }
